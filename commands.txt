@@ -1,0 +1,8 @@
+### Train commands
+
+  1. Rough pretrain:
+     ./isaaclab.sh -p scripts/reinforcement_learning/rsl_rl/train.py --task Isaac-Velocity-Robust-Rough-Unitree-Go2-v0 --headless --max_iterations 1500
+     
+  2. Flat fine-tune:
+     ./isaaclab.sh -p scripts/reinforcement_learning/rsl_rl/train.py --task Isaac-Velocity-Robust-Flat-Unitree-Go2-v0 --headless --resume --load_run <rough_run_dir> --checkpoint model_1499.pt --max_iterations 600
+

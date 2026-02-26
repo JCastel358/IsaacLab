@@ -1,0 +1,74 @@
+--- git status ---
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/__init__.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/agents/rsl_rl_robust_ppo_cfg.py
+	source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/robust_env_cfg.py
+
+no changes added to commit (use "git add" and/or "git commit -a") 
+
+
+--- git diff ---
+diff --git a/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/__init__.py b/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/__init__.py
+index 4ea7d3fce71..fdebdb28db2 100644
+--- a/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/__init__.py
++++ b/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/__init__.py
+@@ -54,3 +54,51 @@ gym.register(
+         "skrl_cfg_entry_point": f"{agents.__name__}:skrl_rough_ppo_cfg.yaml",
+     },
+ )
++
++gym.register(
++    id="Isaac-Velocity-Robust-Rough-Unitree-Go2-v0",
++    entry_point="isaaclab.envs:ManagerBasedRLEnv",
++    disable_env_checker=True,
++    kwargs={
++        "env_cfg_entry_point": f"{__name__}.robust_env_cfg:UnitreeGo2RobustRoughEnvCfg",
++        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_robust_ppo_cfg:UnitreeGo2RobustPPORunnerCfg",
++        "skrl_cfg_entry_point": f"{agents.__name__}:skrl_rough_ppo_cfg.yaml",
++    },
++)
++
++gym.register(
++    id="Isaac-Velocity-Robust-Rough-Unitree-Go2-Play-v0",
++    entry_point="isaaclab.envs:ManagerBasedRLEnv",
++    disable_env_checker=True,
++    kwargs={
++        "env_cfg_entry_point": f"{__name__}.robust_env_cfg:UnitreeGo2RobustRoughEnvCfg_PLAY",
++        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_robust_ppo_cfg:UnitreeGo2RobustPPORunnerCfg",
++        "skrl_cfg_entry_point": f"{agents.__name__}:skrl_rough_ppo_cfg.yaml",
++    },
++)
++
++gym.register(
++    id="Isaac-Velocity-Robust-Flat-Unitree-Go2-v0",
++    entry_point="isaaclab.envs:ManagerBasedRLEnv",
++    disable_env_checker=True,
++    kwargs={
++        "env_cfg_entry_point": f"{__name__}.robust_env_cfg:UnitreeGo2RobustFlatEnvCfg",
++        "rsl_rl_cfg_entry_point": (
++            f"{agents.__name__}.rsl_rl_robust_ppo_cfg:UnitreeGo2RobustFlatFinetunePPORunnerCfg"
++        ),
++        "skrl_cfg_entry_point": f"{agents.__name__}:skrl_flat_ppo_cfg.yaml",
++    },
++)
++
++gym.register(
++    id="Isaac-Velocity-Robust-Flat-Unitree-Go2-Play-v0",
++    entry_point="isaaclab.envs:ManagerBasedRLEnv",
++    disable_env_checker=True,
++    kwargs={
++        "env_cfg_entry_point": f"{__name__}.robust_env_cfg:UnitreeGo2RobustFlatEnvCfg_PLAY",
++        "rsl_rl_cfg_entry_point": (
++            f"{agents.__name__}.rsl_rl_robust_ppo_cfg:UnitreeGo2RobustFlatFinetunePPORunnerCfg"
++        ),
++        "skrl_cfg_entry_point": f"{agents.__name__}:skrl_flat_ppo_cfg.yaml",
++    },
++)
